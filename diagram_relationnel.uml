@@ -10,54 +10,52 @@ hide class circle
 hide empty fields
 /' classes '/
 class oeuvre {
-	id=[titre]+[année]
-	--
 	support
-	--
 	fabricant_es
-	--
 	titre
-	--
 	année de production
-	--
 	lieu de production
-	--
 	langue
+	--
+	id=[titre]+[année]
 }
 class fiction {
-	id=[id de oeuvre]+"fiction"
-	--
+	oeuvre
 	lieu
-	--
 	année
+	--
+	id=[id de oeuvre]+"fiction"
 }
 class mot {
-	id=mot
-	--
+	mot
 	rareté
-	--
 	ancienneté
-	--
 	langue
+	--
+	id=mot
 }
 class lieu {
-	id=pays
-	--
+	pays
 	langue officielle
-	--
 	existence réelle
+	--
+	id=pays
 }
 class fabricant_e {
-	id=nom
-	--
+	nom
 	lieu
-	--
 	année de création
+	--
+	id=nom
 }
 class année {
+	numéro
+	--
 	id=numéro
 }
 class langue {
+	nom
+	--
 	id=nom
 }
 /' relations '/ 

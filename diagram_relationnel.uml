@@ -61,21 +61,21 @@ class langue {
 	id=nom
 }
 /' relations '/ 
-fabricant_es  "1" --> "0..n" oeuvre: produit
-oeuvre -[#blue]-> année: <font color="blue"> est produite en
-oeuvre -->  fiction: représente
-fabricant_es  -[#blue]-> année: <font color="blue">est créé_e en
-fiction  -[#blue]-> année: <font color="blue">se déroule dans
-fiction  -[#green]-> lieu: <font color="green">se déroule dans
+fabricant_e  "1..n" --> "1..n" oeuvre: produit
+oeuvre "0..n" -[#blue]-> "1" année: <font color="blue"> est produite en
+oeuvre "1..n" -->  "1" fiction: représente
+fabricant_e  "0..n" -[#blue]-> "1" année: <font color="blue">est créé_e en
+fiction "0..n" -[#blue]-> "0..n" année: <font color="blue">se déroule dans
+fiction "0..n" -[#green]-> "0..n" lieu: <font color="green">se déroule dans
 
-fabricant_es  -[#green]-> lieu: <font color="green">est établi_e dans
+fabricant_e "0..n" -[#green]-> "1..n" lieu: <font color="green">est établi_e dans
 
-oeuvre -[#green]->  lieu: <font color="green">est produite en
-oeuvre  -[#pink]-> langue: <font color="pink">est écrite/tournée en
-langue -[#green]->  lieu: <font color="green">est parlée dans
+oeuvre "0..n" -[#green]-> "1" lieu: <font color="green">est produite en
+oeuvre "0..n" -[#pink]-> "1..n" langue: <font color="pink">est écrite/tournée en
+langue "1" <-[#green]-  "1..n" lieu: <font color="green">a comme langue officielle
 
 mot  -[#pink]-> oeuvre: <font color="pink">est utilisé \n<font color="pink">dans titre de
-mot  -[#pink]-> fabricant_es: <font color="pink">est utilisé \n<font color="pink">dans nom de
+mot  -[#pink]-> fabricant_e: <font color="pink">est utilisé \n<font color="pink">dans nom de
 mot  -[#pink]-> langue: <font color="pink">appartient à
 
 année -[#grey]-> année: <font color="grey">a différence avec

@@ -1,0 +1,84 @@
+@startuml
+left to right direction
+/' skinparam monochrome true '/
+/' skinparam linetype ortho '/
+skinparam shadowing false
+skinparam sequenceMessageAlign center
+skinparam ClassFontSize 16
+skinparam ClassFontStyle bold
+hide class circle
+hide empty fields
+
+class oeuvre {
+	id=[titre]+[année]
+	--
+	support
+	--
+	fabricant_es
+	--
+	titre
+	--
+	année de production
+	--
+	lieu de production
+	--
+	langue
+}
+class fiction {
+	id=[id de oeuvre]+"fiction"
+	--
+	lieu
+	--
+	année
+}
+class mot {
+	id=mot
+	--
+	rareté
+	--
+	ancienneté
+	--
+	langue
+}
+class lieu {
+	id=pays
+	--
+	langue officielle
+	--
+	existence réelle
+}
+class fabricant_es {
+	id=nom
+	--
+	lieu
+	--
+	année de création
+}
+class année {
+	numéro
+}
+class langue {
+	nom
+}
+/' l'ordre peut compter '/
+/' --[norank]> '/ 
+fabricant_es  --> oeuvre: produisent
+oeuvre -[#blue]-> année: <font color="blue">production en
+oeuvre -->  fiction: représente
+fabricant_es  -[#blue]-> année: <font color="blue">créé_es en
+fiction  -[#blue]-> année: <font color="blue">se déroule dans
+fiction  -[#green]-> lieu: <font color="green">se déroule dans
+
+fabricant_es  -[#green]-> lieu: <font color="green">sont établi_es dans
+
+oeuvre -[#green]->  lieu: <font color="green">production en
+oeuvre  -[#pink]-> langue: <font color="pink">écrite/tournée en
+langue -[#green]->  lieu: <font color="green">est parlée dans
+
+mot  -[#pink]-> oeuvre: <font color="pink">est utilisé \n<font color="pink">dans titre de
+mot  -[#pink]-> fabricant_es: <font color="pink">est utilisé \n<font color="pink">dans nom de
+mot  -[#pink]-> langue: <font color="pink">appartient à
+
+année -[#grey]-> année: <font color="grey">a différence avec
+lieu -[#grey]-> lieu: <font color="grey">est identique a
+@enduml

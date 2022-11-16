@@ -62,11 +62,11 @@ class langue {
 organisation  "1..n" --> "1..n" manifestation: produit
 manifestation "0..n" -[#blue]-> "1" année: <font color="blue"> est produite en
 manifestation "1..n" -->  "1" oeuvre: représente
-organisation  "0..n" -[#blue]-> "1" année: <font color="blue">est créé_e en
+organisation  "0..n" -[#blue]-> "1" année: <font color="blue">est créée en
 oeuvre "0..n" -[#blue]-> "0..n" année: <font color="blue">se déroule dans
 oeuvre "0..n" -[#green]-> "0..n" lieu: <font color="green">se déroule dans
 
-organisation "0..n" -[#green]-> "1..n" lieu: <font color="green">est établi_e dans
+organisation "0..n" -[#green]-> "1..n" lieu: <font color="green">est établie dans
 
 manifestation "0..n" -[#green]-> "1" lieu: <font color="green">est produite en
 manifestation "0..n" -[#pink]-> "1..n" langue: <font color="pink">est écrite/tournée en

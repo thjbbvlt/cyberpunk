@@ -49,7 +49,7 @@ create table manifestation (
 /* create table oeuvre (pk_oeuvre, fk_manifestation, fk_pays, fk_annee); */
 create table oeuvre (
 	pk_oeuvre int primary key not null,
-	fk_oeuvre_organisation int,
+	fk_oeuvre_manifestation int,
 	fk_oeuvre_annee int,
 	fk_oeuvre_pays int,
 	fk_oeuvre_langue int,
@@ -60,7 +60,6 @@ create table oeuvre (
 );
 
 /* create table mot (pk_mot, nom, rarete, anciennete, fk_langue); */
-create table mot (
 
 
 

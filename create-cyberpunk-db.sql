@@ -1,5 +1,5 @@
 /*
-SÉRIE DE COMMANDES SQLITE3 POUR CRÉER LA BASE DE DONNÉE
+SÉRIE DE COMMANDES SQLITE3 POUR CRÉER LA BASE DE DONNÉE (TABLES)
 à partir de la commande suivante (par exemple):
 sqlite3 cyberpunk.db ".read create-cyberpunk-db.sql" 
 
@@ -10,24 +10,24 @@ https://www.sqlite.org/foreignkeys.html
 /* autoriser foreign key: */
 PRAGMA foreign_keys = ON;
 
-/* create table annee (pk_annee, numero); */
+/* annee (pk_annee, numero); */
 create table annee (
 	pk_annee int primary key not null
 );
 
-/* create table pays (pk_pays, nom, fk_langue, existence_reelle); */
+/* pays (pk_pays, nom, fk_langue, existence_reelle); */
 create table pays (
 	/* column_name type constraint1 constraintn (primary key not null)(,) */
 	pk_pays text primary key not null
 	/* primary key: implique not null (mais il faut le spécifier tout de même) et unique (pas besoin de spécifier) */
 );
 
-/* create table langue (pk_langue, nom); */
+/* langue (pk_langue, nom); */
 create table langue (
 	pk_langue text primary key not null
 );
 
-/* create table organisation (pk_organisation, nom, fk_pays, annee_de_creation); */
+/* organisation (pk_organisation, nom, fk_pays, annee_de_creation); */
 create table organisation (
 	pk_organisation int primary key not null,
 	organisation_nom text,
@@ -38,7 +38,7 @@ create table organisation (
 	FOREIGN KEY(fk_organisation_pays) REFERENCES pays(pk_pays)
 );
 
-/* create table manifestation (pk_manifestation, titre, fk_organisation, fk_oeuvre, fk_annee, fk_pays, fk_langue); */
+/* manifestation (pk_manifestation, titre, fk_organisation, fk_oeuvre, fk_annee, fk_pays, fk_langue); */
 create table manifestation (
 	pk_manifestation int primary key not null,
 	manifestation_titre text,
@@ -52,7 +52,7 @@ create table manifestation (
 	FOREIGN KEY(fk_manifestation_langue) REFERENCES langue(pk_langue)
 );
 
-/* create table oeuvre (pk_oeuvre, fk_manifestation, fk_pays, fk_annee); */
+/* oeuvre (pk_oeuvre, fk_manifestation, fk_pays, fk_annee); */
 create table oeuvre (
 	pk_oeuvre int primary key not null,
 	fk_oeuvre_manifestation int,
@@ -65,7 +65,7 @@ create table oeuvre (
 	FOREIGN KEY(fk_oeuvre_langue) REFERENCES langue(pk_langue)
 );
 
-/* create table mot (pk_mot, nom, rarete, anciennete, fk_langue); */
+/* mot (pk_mot, nom, rarete, anciennete, fk_langue); */
 create table mot (
 	pk_mot int primary key not null,
 	chaine_caractere text,

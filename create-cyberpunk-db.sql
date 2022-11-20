@@ -68,6 +68,14 @@ create table oeuvre (
 );
 
 /* create table mot (pk_mot, nom, rarete, anciennete, fk_langue); */
+create table mot (
+	pk_mot int primary key not null,
+	chaine_caractere text,
+	rareté int,
+	ancienneté int,
+	fk_mot_langue int,
+	FOREIGN KEY(fk_mot_langue) REFERENCES langue(pk_langue)
+);
 
 /* test table avec keys */
 /* depuis: */

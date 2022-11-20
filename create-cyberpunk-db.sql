@@ -79,14 +79,17 @@ create table mot (
 /* depuis: */
 
 /* insérer valeurs dans des tables */
-insert into langue values ('eng');
 insert into annee values (2004);
+insert into annee values (1954);
 insert into pays values ('us');
-/* insert into organisation values (12, 'une_organisation', 1824); */
+insert into langue values ('eng');
+insert into organisation values (1, 'super_name_compagnie', 1954, 'us');
+insert into manifestation values (1, 'titre_plutot_cool', 1, '2004', 'us', 'eng');
 
 /* pour m'assurer que tout fonctionne */
 /* faire une requete */
 /* select * from langue; */
 select * from annee;
-select * from organisation;
 select * from langue;
+select * from organisation;
+select * from manifestation;

@@ -12,14 +12,14 @@ PRAGMA foreign_keys = ON;
 
 /* annee (pk_annee, numero); */
 create table annee (
+	/* column_name type constraint1 constraintn (primary key not null)(,) */
+	/* primary key: implique not null (mais il faut le spécifier tout de même) et unique (pas besoin de spécifier) */
 	pk_annee int primary key not null
 );
 
 /* pays (pk_pays, nom, fk_langue, existence_reelle); */
 create table pays (
-	/* column_name type constraint1 constraintn (primary key not null)(,) */
 	pk_pays text primary key not null
-	/* primary key: implique not null (mais il faut le spécifier tout de même) et unique (pas besoin de spécifier) */
 );
 
 /* langue (pk_langue, nom); */

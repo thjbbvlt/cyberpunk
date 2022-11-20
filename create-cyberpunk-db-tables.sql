@@ -46,6 +46,7 @@ create table manifestation (
 	fk_manifestation_annee int,
 	fk_manifestation_pays text,
 	fk_manifestation_langue text,
+	support text,
 	FOREIGN KEY(fk_manifestation_organisation) REFERENCES organisation(pk_organisation),
 	FOREIGN KEY(fk_manifestation_annee) REFERENCES annee(pk_annee),
 	FOREIGN KEY(fk_manifestation_pays) REFERENCES pays(pk_pays),
@@ -74,4 +75,3 @@ create table mot (
 	fk_mot_langue text,
 	FOREIGN KEY(fk_mot_langue) REFERENCES langue(pk_langue)
 );
-

@@ -1,7 +1,7 @@
 /*
 SÉRIE DE COMMANDES SQLITE3 POUR CRÉER LA BASE DE DONNÉE (TABLES)
 à partir de la commande suivante (par exemple):
-sqlite3 cyberpunk.db ".read create-cyberpunk-db.sql" 
+sqlite3 cyberpunk.db ".read create-cyberpunk-db-tables.sql" 
 
 https://www.sqlite.org/lang_createtable.html 
 https://www.sqlite.org/foreignkeys.html 

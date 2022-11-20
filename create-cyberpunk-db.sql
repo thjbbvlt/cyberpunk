@@ -18,15 +18,13 @@ create table annee (
 /* create table pays (pk_pays, nom, fk_langue, existence_reelle); */
 create table pays (
 	/* column_name type constraint1 constraintn (primary key not null)(,) */
-	pk_pays int primary key not null, 
+	pk_pays text primary key not null
 	/* primary key: implique not null (mais il faut le spécifier tout de même) et unique (pas besoin de spécifier) */
-	pays_nom text
 );
 
 /* create table langue (pk_langue, nom); */
 create table langue (
-	pk_langue int primary key not null,
-	langue_nom text
+	pk_langue text primary key not null
 );
 
 /* create table organisation (pk_organisation, nom, fk_pays, annee_de_creation); */
@@ -34,7 +32,7 @@ create table organisation (
 	pk_organisation int primary key not null,
 	organisation_nom text,
 	fk_organisation_annee int,
-	fk_organisation_pays int,
+	fk_organisation_pays text,
 	/* les relations fk-pk doivent être à la fin */
 	FOREIGN KEY(fk_organisation_annee) REFERENCES annee(pk_annee),
 	FOREIGN KEY(fk_organisation_pays) REFERENCES pays(pk_pays)
@@ -46,8 +44,8 @@ create table manifestation (
 	manifestation_titre text,
 	fk_manifestation_organisation int,
 	fk_manifestation_annee int,
-	fk_manifestation_pays int,
-	fk_manifestation_langue int,
+	fk_manifestation_pays text,
+	fk_manifestation_langue text,
 	FOREIGN KEY(fk_manifestation_organisation) REFERENCES organisation(pk_organisation),
 	FOREIGN KEY(fk_manifestation_annee) REFERENCES annee(pk_annee),
 	FOREIGN KEY(fk_manifestation_pays) REFERENCES pays(pk_pays),
@@ -59,8 +57,8 @@ create table oeuvre (
 	pk_oeuvre int primary key not null,
 	fk_oeuvre_manifestation int,
 	fk_oeuvre_annee int,
-	fk_oeuvre_pays int,
-	fk_oeuvre_langue int,
+	fk_oeuvre_pays text,
+	fk_oeuvre_langue text,
 	FOREIGN KEY(fk_oeuvre_manifestation) REFERENCES manifestation(pk_manifestation),
 	FOREIGN KEY(fk_oeuvre_annee) REFERENCES annee(pk_annee),
 	FOREIGN KEY(fk_oeuvre_pays) REFERENCES pays(pk_pays),
@@ -73,7 +71,7 @@ create table mot (
 	chaine_caractere text,
 	rareté int,
 	ancienneté int,
-	fk_mot_langue int,
+	fk_mot_langue text,
 	FOREIGN KEY(fk_mot_langue) REFERENCES langue(pk_langue)
 );
 
@@ -81,10 +79,9 @@ create table mot (
 /* depuis: */
 
 /* insérer valeurs dans des tables */
-/* insert into langue values (1, 'eng'); */
-/* insert into langue values (2, 'fra'); */
+insert into langue values ('eng');
 insert into annee values (2004);
-insert into annee values (1824);
+insert into pays values ('us');
 /* insert into organisation values (12, 'une_organisation', 1824); */
 
 /* pour m'assurer que tout fonctionne */
@@ -92,3 +89,4 @@ insert into annee values (1824);
 /* select * from langue; */
 select * from annee;
 select * from organisation;
+select * from langue;

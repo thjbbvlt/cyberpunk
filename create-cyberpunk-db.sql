@@ -1,6 +1,11 @@
-/* SÉRIE DE COMMANDES SQLITE3 POUR CRÉER LA BASE DE DONNÉE */
-/* à partir de la commande suivante (par exemple) */
-/* sqlite3 cyberpunk.db ".read create-cyberpunk-db.sql" */
+/*
+SÉRIE DE COMMANDES SQLITE3 POUR CRÉER LA BASE DE DONNÉE
+à partir de la commande suivante (par exemple):
+sqlite3 cyberpunk.db ".read create-cyberpunk-db.sql" 
+
+https://www.sqlite.org/foreignkeys.html 
+https://www.sqlite.org/lang_createtable.html 
+*/
 
 /* autoriser foreign key: */
 PRAGMA foreign_keys = ON;
@@ -12,7 +17,9 @@ create table annee (
 
 /* create table pays (pk_pays, nom, fk_langue, existence_reelle); */
 create table pays (
-	pk_pays int primary key not null, /* primary key: implique not null (mais il faut le spécifier tout de même) et unique (pas besoin de spécifier) */
+	/* column_name type constraint1 constraintn (primary key not null)(,) */
+	pk_pays int primary key not null, 
+	/* primary key: implique not null (mais il faut le spécifier tout de même) et unique (pas besoin de spécifier) */
 	pays_nom text
 );
 
@@ -22,12 +29,13 @@ create table langue (
 	langue_nom text
 );
 
-/* create table fabricant_e (pk_fabricant, nom, fk_pays, annee_de_creation); */
+/* create table organisation (pk_organisation, nom, fk_pays, annee_de_creation); */
 create table organisation (
 	pk_organisation int primary key not null,
 	organisation_nom text,
 	fk_organisation_annee int,
 	fk_organisation_pays int,
+	/* les relations fk-pk doivent être à la fin */
 	FOREIGN KEY(fk_organisation_annee) REFERENCES annee(pk_annee),
 	FOREIGN KEY(fk_organisation_pays) REFERENCES pays(pk_pays)
 );
@@ -61,8 +69,6 @@ create table oeuvre (
 
 /* create table mot (pk_mot, nom, rarete, anciennete, fk_langue); */
 
-
-
 /* test table avec keys */
 /* depuis: */
 
@@ -73,19 +79,8 @@ insert into annee values (2004);
 insert into annee values (1824);
 /* insert into organisation values (12, 'une_organisation', 1824); */
 
-
+/* pour m'assurer que tout fonctionne */
 /* faire une requete */
 /* select * from langue; */
 select * from annee;
 select * from organisation;
-
-/* aide-mémoire */
-
-/* https://www.sqlite.org/foreignkeys.html */
-/* https://www.sqlite.org/lang_createtable.html */
-
-/* les commandes de bases: */
-/* create table tablegoodname (text1, text2);; */
-/* column_name type constraint1 constraint2... (primary key) */
-/* insert into tablegoodname values('une_valeur', 2, 'une_autre_valeur_pas_num');; */
-

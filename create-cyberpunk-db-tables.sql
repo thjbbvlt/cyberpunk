@@ -14,7 +14,7 @@ PRAGMA foreign_keys = ON;
 create table annee (
 	/* column_name type constraint1 constraintn (primary key not null)(,) */
 	/* primary key: implique not null (mais il faut le spécifier tout de même) et unique (pas besoin de spécifier) */
-	pk_annee int primary key not null
+	pk_annee text primary key not null
 );
 
 /* pays (pk_pays, nom, fk_langue, existence_reelle); */
@@ -29,9 +29,8 @@ create table langue (
 
 /* organisation (pk_organisation, nom, fk_pays, annee_de_creation); */
 create table organisation (
-	pk_organisation int primary key not null,
-	organisation_nom text,
-	fk_organisation_annee int,
+	pk_organisation_nom text primary key not null,
+	fk_organisation_annee text,
 	fk_organisation_pays text,
 	/* les relations fk-pk doivent être à la fin */
 	FOREIGN KEY(fk_organisation_annee) REFERENCES annee(pk_annee),
@@ -42,12 +41,12 @@ create table organisation (
 create table manifestation (
 	pk_manifestation int primary key not null,
 	manifestation_titre text,
-	fk_manifestation_organisation int,
-	fk_manifestation_annee int,
+	support text,
 	fk_manifestation_pays text,
 	fk_manifestation_langue text,
-	support text,
-	FOREIGN KEY(fk_manifestation_organisation) REFERENCES organisation(pk_organisation),
+	fk_manifestation_organisation text,
+	fk_manifestation_annee text,
+	FOREIGN KEY(fk_manifestation_organisation) REFERENCES organisation(pk_organisation_nom),
 	FOREIGN KEY(fk_manifestation_annee) REFERENCES annee(pk_annee),
 	FOREIGN KEY(fk_manifestation_pays) REFERENCES pays(pk_pays),
 	FOREIGN KEY(fk_manifestation_langue) REFERENCES langue(pk_langue)
@@ -55,21 +54,18 @@ create table manifestation (
 
 /* oeuvre (pk_oeuvre, fk_manifestation, fk_pays, fk_annee); */
 create table oeuvre (
-	pk_oeuvre int primary key not null,
 	fk_oeuvre_manifestation int,
-	fk_oeuvre_annee int,
+	pk_oeuvre int primary key not null,
+	fk_oeuvre_annee text,
 	fk_oeuvre_pays text,
-	fk_oeuvre_langue text,
 	FOREIGN KEY(fk_oeuvre_manifestation) REFERENCES manifestation(pk_manifestation),
 	FOREIGN KEY(fk_oeuvre_annee) REFERENCES annee(pk_annee),
-	FOREIGN KEY(fk_oeuvre_pays) REFERENCES pays(pk_pays),
-	FOREIGN KEY(fk_oeuvre_langue) REFERENCES langue(pk_langue)
+	FOREIGN KEY(fk_oeuvre_pays) REFERENCES pays(pk_pays)
 );
 
 /* mot (pk_mot, nom, rarete, anciennete, fk_langue); */
 create table mot (
-	pk_mot int primary key not null,
-	chaine_caractere text,
+	pk_mot text primary key not null,
 	rareté int,
 	ancienneté int,
 	fk_mot_langue text,

@@ -10,24 +10,24 @@ https://www.sqlite.org/foreignkeys.html
 /* autoriser foreign key: */
 PRAGMA foreign_keys = ON;
 
-/* annee (pk_annee, numero); */
+/* annee (pk_annee); */
 create table annee (
 	/* column_name type constraint1 constraintn (primary key not null)(,) */
 	/* primary key: implique not null (mais il faut le spécifier tout de même) et unique (pas besoin de spécifier) */
 	pk_annee text primary key not null
 );
 
-/* pays (pk_pays, nom, fk_langue, existence_reelle); */
+/* pays (pk_pays_nom, fk_langue, existence_reelle); */
 create table pays (
 	pk_pays text primary key not null
 );
 
-/* langue (pk_langue, nom); */
+/* langue (pk_langue_nom); */
 create table langue (
 	pk_langue text primary key not null
 );
 
-/* organisation (pk_organisation, nom, fk_pays, annee_de_creation); */
+/* organisation (pk_organisation_nom, fk_pays, annee_de_creation); */
 create table organisation (
 	pk_organisation_nom text primary key not null,
 	fk_organisation_annee text,
@@ -37,7 +37,7 @@ create table organisation (
 	FOREIGN KEY(fk_organisation_pays) REFERENCES pays(pk_pays)
 );
 
-/* manifestation (pk_manifestation, titre, fk_organisation, fk_oeuvre, fk_annee, fk_pays, fk_langue); */
+/* manifestation (pk_manifestation, titre, support, fk_pays, fk_langue, fk_organisation, fk_annee); */
 create table manifestation (
 	pk_manifestation int primary key not null,
 	manifestation_titre text,
@@ -52,7 +52,7 @@ create table manifestation (
 	FOREIGN KEY(fk_manifestation_langue) REFERENCES langue(pk_langue)
 );
 
-/* oeuvre (pk_oeuvre, fk_manifestation, fk_pays, fk_annee); */
+/* oeuvre (fk_manifestation, pk_oeuvre, fk_pays, fk_annee); */
 create table oeuvre (
 	fk_oeuvre_manifestation int,
 	pk_oeuvre int primary key not null,

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-grep 'into manifestation' values.sql | sed "s/insert into manifestation values (\([^,]*\), \([^,]*\), .*/python3 word_lexical_class.py \2 \1/g" | tr 'A-Z' 'a-z' > ./tmp/word-rarity-1-tmp.sh
+grep 'into manifestation' ../values.sql | sed "s/insert into manifestation values (\([^,]*\), \([^,]*\), .*/python3 word_lexical_class.py \2 \1/g" | tr 'A-Z' 'a-z' > ./tmp/word-rarity-1-tmp.sh
 # grep: pour sélectionner les lignes comportant des titres
 # sed: pour sélectionner, dans ces lignes, les titres (\2) et les keys des manifestations (\1); et pour transformer le résultat en commandes.
 # tr: pour enlever les majuscules (sinon wordnet pense qu'il s'agit de noms propres)
